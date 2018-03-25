@@ -24,4 +24,10 @@ module RandomData
     letters.shuffle!
     letters[0, rand(3..8)].join
   end
+
+  def self.random_price
+    rpi = Random.new
+    rpi.rand(1.0...25.99)
+  end
+
 end
