@@ -30,4 +30,9 @@ module RandomData
     rpi.rand(1.0...25.99)
   end
 
+  def self.random_boolean
+    rboolean = [true, false].sample
+  end
+
+
 end
