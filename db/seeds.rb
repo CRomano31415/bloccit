@@ -1,7 +1,15 @@
 require 'random_data'
 
+15.times do
+  Topic.create!(
+    name:   RandomData.random_sentence,
+    description: RandomData.random_paragraph
+  )
+end
+
 50.times do
   Post.create!(
+    topic:  topics.sample,
     title:  RandomData.random_sentence,
     body:   RandomData.random_paragraph
   )
@@ -40,6 +48,7 @@ uniqPost = Post.find_or_create_by!(title: 'Greeting', body: 'Hi there!')
 Comment.find_or_create_by!(post: uniqPost, body: 'The most unique body!')
 
 puts "Seed finished"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} ads created"
