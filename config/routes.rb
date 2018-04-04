@@ -5,6 +5,8 @@ resources :topics do
   resources  :sponsored_posts, except: [:index]
 end
 
+resources :users, only: [:new, :create]
+
 resources :advertisements
 resources :questions
 
