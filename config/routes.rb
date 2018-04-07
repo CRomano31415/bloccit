@@ -6,6 +6,7 @@ resources :topics do
 end
 
 resources :users, only: [:new, :create]
+resources :sessions, only: [:new, :create, :destroy]
 post 'users/confirm' => 'users#confirm'
 
 resources :advertisements
