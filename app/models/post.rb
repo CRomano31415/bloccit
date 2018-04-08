@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   default_scope { order('created_at DESC') }
 
   #ordered by title scope
-  scope :ordered_by_title, ->{ order('title')}
+  scope :ordered_by_title, ->{ order('title DESC')}
 
   #ordered by reverse created at scope
   scope :ordered_by_reverse_created_at, ->{ order('created_at ASC')}
