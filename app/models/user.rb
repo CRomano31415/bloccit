@@ -18,8 +18,8 @@ before_save { self.role ||= :member }
 
   has_secure_password
 
-  enum role: [:member, :admin]
-  
+  enum role: [:member, :admin, :moderator]
+
   # def name_capitalize
   #   if name
   #   self.name = name.downcase.split.each  {|a| a.to_s.capitalize!}.join(" ")

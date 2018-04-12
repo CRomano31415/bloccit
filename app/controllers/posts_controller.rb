@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
+
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
     @post.user = current_user
@@ -45,6 +46,11 @@ class PostsController < ApplicationController
 
   def destroy
      @post = Post.find(params[:id])
+     if current_user.moderator?
+       flash[:alert] = "You must be an admin to do that."
+       redirect_to [post.topic, post]
+     end 
+
      if @post.destroy
        flash[:notice] = "\'#{@post.title}\' was deleted successfully."
        redirect_to @post.topic
@@ -62,9 +68,9 @@ class PostsController < ApplicationController
    def authorize_user
      post = Post.find(params[:id])
 
-     unless current_user == post.user || current_user.admin?
+     unless current_user == post.user || current_user.admin? || current_user.moderator?
         flash[:alert] = "You must be an admin to do that."
         redirect_to [post.topic, post]
      end
-   end 
+   end
 end

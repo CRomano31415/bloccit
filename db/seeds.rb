@@ -81,6 +81,14 @@ end
    password: 'helloworld'
  )
 
+ # Create a moderator user
+  admin = User.create!(
+    name:     'Moderator User',
+    email:    'moderator@example.com',
+    password: 'helloworld',
+    role:     'moderator'
+  )
+
 # uniqPost = Post.find_or_create_by!(title: 'Greeting', body: 'Hi there!')
 # Comment.find_or_create_by!(post: uniqPost, body: 'The most unique body!')
 
