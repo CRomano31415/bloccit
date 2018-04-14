@@ -4,7 +4,7 @@ has_many :posts, dependent: :destroy
 has_many :comments, dependent: :destroy
 
 before_save { self.email = email.downcase if email.present? }
-# before_save :name_capitalize
+before_save :name_capitalize
 before_save { self.role ||= :member }
 
  validates :name, length: { minimum: 1, maximum: 100 }, presence: true
@@ -21,10 +21,10 @@ before_save { self.role ||= :member }
 
   enum role: [:member, :admin]
   
-  # def name_capitalize
-  #   if name
-  #   self.name = name.downcase.split.each  {|a| a.to_s.capitalize!}.join(" ")
-  #   end
-  # end
+   def name_capitalize
+     if name
+     self.name = name.downcase.split.each  {|a| a.to_s.capitalize!}.join(" ")
+     end
+  end
 
 end
