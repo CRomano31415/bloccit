@@ -85,5 +85,21 @@ RSpec.describe Post, type: :model do
      end
    end
 
+   describe "#create_vote" do 
+      it "is called after a post is created" do 
+        post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
+        post.save
+        expect(post).to receive(:create_vote)
+      end
+
+      it "increases the votes by 1" do 
+        expect(post.up_votes).to eq(1)
+      end 
+
+      it "associates with post user" do 
+        expect(post.votes.first.user).to eq(user)
+      end   
+   end
+
    #end of voting spec test
 end
