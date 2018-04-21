@@ -37,10 +37,5 @@ class UsersController < ApplicationController
    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
-  def no_post_helper
-    "#{user.name} has not submitted any posts yet."
-  end 
- 
   helper_method :user_params
-  helper_method :no_post_helper
 end

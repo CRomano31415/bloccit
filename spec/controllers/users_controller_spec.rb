@@ -22,6 +22,19 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+    describe "GET show" do
+      it "returns http success" do
+        get :show, params: { user: new_user_attributes }
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders the #show view" do
+        get :show, params: { user: new_user_attributes }
+        expect(response).to render_template :show
+      end
+    end
+
+
   describe "POST create" do
     it "returns an http redirect" do
       post :create, params: { user: new_user_attributes }

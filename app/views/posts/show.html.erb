@@ -1,6 +1,4 @@
 <h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
-
 <div>
    <%= render partial: 'votes/voting', locals: { post: @post } %>
    <h1>
@@ -18,9 +16,7 @@
        <h3>Comments</h3>
        <%= render @post.comments %>
      </div>
-      <!-- #19 -->
      <% if current_user %>
-      <!-- #20 -->
        <%= render 'comments/form', comment: Comment.new, post: @post %>
      <% end %>
   </div>

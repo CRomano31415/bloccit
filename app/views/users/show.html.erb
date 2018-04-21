@@ -18,8 +18,32 @@
      </div>
    </div>
  </div>
- <h2>Posts</h2>
- <%= render @user.posts %>
- 
- <h2>Comments</h2>
- <%= render @user.comments %>
+ <% if no_post_helper?(@user, @user.posts.count) %>
+ <%=   "#{@user.name} has not submitted any posts yet" %>
+ <% else %>
+   <h2>Posts</h2>
+   <%= render @user.posts %>
+ <% end %>
+ <br />
+  <% if no_post_helper?(@user, @user.comments.count) %>
+   <%=   "#{@user.name} has not submitted any comments yet" %>
+ <% else %>
+   <h2>Comments</h2>
+   <%= render @user.comments %>
+ <% end %>
+<div class="media-body">
+  <h2>Favorites</h2>
+    <% @user.favorites.each do |favorite| %>
+           <h4 class="media-heading">
+             <%= link_to favorite.post.title, topic_post_path(favorite.post.topic.id, favorite) %>
+          <% avatar_url = favorite.post.user.avatar_url(28) %>
+           <% if avatar_url %>
+             <div class="media-left">
+               <%= image_tag avatar_url, class: 'media-object' %>
+             </div>
+           <% end %>
+            <small>Votes: <%=  favorite.post.votes.count %> Comments: <%=  favorite.post.comments.count %></small>
+           </h4>
+
+    <% end %>
+</div>
