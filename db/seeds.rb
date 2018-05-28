@@ -85,10 +85,17 @@ end
    role:     'admin'
  )
 
+ # Create a moderator
+ moderator = User.create!(
+   name:     'Moderator User',
+   email:    'moderator@example.com',
+   password: 'helloworld'
+ )
+
  # Create a member
  member = User.create!(
    name:     'Member User',
-   email:    'cipeinado@gmail.com',
+   email:    'member@example.com',
    password: 'helloworld'
  )
 
